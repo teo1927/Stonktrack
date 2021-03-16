@@ -44,6 +44,10 @@ def analyzecsv(inputcsvfilename, outputcsvfilename, stocklist):
     open(outputcsvfilename, 'w').close()
     with open(outputcsvfilename, 'a+') as mentionfile:
         writer = csv.writer(mentionfile, delimiter='\n')
+        hourheader = outputcsvfilename.split('/')
+        hourheader = hourheader[-1]
+        hourheader = hourheader.strip('mentions.csv')
+        writer.writerow(['Ticker,'+hourheader])
         for item in mentions:
             number = mentions.count(item)
             mentions_counted.append((item,number))
